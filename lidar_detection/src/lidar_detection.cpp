@@ -7,7 +7,7 @@
 #include <vector>
 #include <angles/angles.h>
 #include <sensor_msgs/LaserScan.h>
-
+#include <math.h>
 
 #define RANGE_MAX 5.6;
 using namespace std;
@@ -111,6 +111,15 @@ class Lidar_detection{
 
             }
             
+        
+        double a = 0.25; //y side
+        double b = 0.5; //x side
+        
+        double ellipse(const double theata, );
+        double ans;
+        ans = std::sqrt((std::pow[a,2]*std::pow[b,2])/(std::pow[b,2]*pow[std::cos(theata),2]+std::pow[a,2]*pow[std::sin(theata),2]));
+        return ans;
+        
             //left front
             if(min1<0.5){
                 cmd_vel.linear.x = -0.2;
