@@ -14,6 +14,8 @@ using namespace std;
 //prottype;
 class Lidar_detection{
     public:
+        const double a = 0.25; //y side
+        const double b = 0.5; //x side
     Lidar_detection(){
         cmd_vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 1000);
         lidar_sub = n.subscribe("/scan", 1000, &Lidar_detection::lidar_callback, this);
@@ -31,6 +33,12 @@ class Lidar_detection{
         }
         return result;
     }
+    
+    double eclipse(const double& theata)
+        {
+            double ans = std::sqrt((std::pow[a,2]*std::pow[b,2])/(std::pow[b,2]*std::pow[std::cos(theata),2]+std::pow[a,2]*std::pow[std::sin(theata),2]));
+            return ans;
+        }
 
     double null_check(double target){
         if(!(target >0)){
@@ -52,23 +60,48 @@ class Lidar_detection{
             double left=msg->ranges[center_number+128];
             double right=msg->ranges[center_number-128];
             std::stringstream angles;
-            vector<double> q1,q2, q3, q4, q5, q6,q7,q8;
+            vector<double> q1,q2, q3, q4, q5, q6,q7,q8,q9,q10,q11,q12;
             double min1=0;
             double min2=0;
             double min3=0; 
             double min4=0;
+            double min5=0;
+            double min6=0;
+            double min7=0;
+            double min8=0;
+            double min9=0;
+            double min10=0;
+            double min11=0;
+            double min12=0;
+       
             // angle 0 - 180, -179 - 0
             for (double angle = angle_min; angle < angle_max; angle++)            
             {
-                if(angle >=0 && angle<90){
+                if(angle >=0 && angle<30){
                     q1.push_back(msg->ranges[center_number+angle]);
-                }else if (angle >=90 && angle <angle_max){
+                }if(angle >=30 && angle<60){
                     q2.push_back(msg->ranges[center_number+angle]);
-                }
-                if (angle >=angle_min && angle <-90){
+                }if(angle >=60 && angle<90){
                     q3.push_back(msg->ranges[center_number+angle]);
-                }else if (angle >=-90 && angle <0){
+                }if(angle >=90 && angle<120){
                     q4.push_back(msg->ranges[center_number+angle]);
+                }if(angle >=120 && angle<150){
+                    q5.push_back(msg->ranges[center_number+angle]);
+                }else if (angle >=150 && angle <angle_max){
+                    q6.push_back(msg->ranges[center_number+angle]);
+                }
+                if (angle >=angle_min && angle <-150){
+                    q7.push_back(msg->ranges[center_number+angle]);
+                }if(angle >=-150 && angle<-120){
+                    q8.push_back(msg->ranges[center_number+angle]);
+                }if(angle >=-120 && angle<-90){
+                    q9.push_back(msg->ranges[center_number+angle]);
+                }if(angle >=-90 && angle<-60){
+                    q10.push_back(msg->ranges[center_number+angle]);
+                }if(angle >=-60 && angle<-30){
+                    q11.push_back(msg->ranges[center_number+angle]);
+                }else if (angle >=-30 && angle <0){
+                    q12.push_back(msg->ranges[center_number+angle]);
                 }
 
                 // if (center_number+angle >=45 && center_number+angle <90){
@@ -93,15 +126,45 @@ class Lidar_detection{
                 q2 = meanWithoutInf(q2);
                 q3 = meanWithoutInf(q3);
                 q4 = meanWithoutInf(q4);
+                q5 = meanWithoutInf(q5);
+                q6 = meanWithoutInf(q6);
+                q7 = meanWithoutInf(q7);
+                q8 = meanWithoutInf(q8);
+                q9 = meanWithoutInf(q9);
+                q10 = meanWithoutInf(q10);
+                q11 = meanWithoutInf(q11);
+                q12 = meanWithoutInf(q12);
                 auto sm1 = min_element(q1.begin(), q1.end());
                 auto sm2 = min_element(q2.begin(), q2.end());
                 auto sm3 = min_element(q3.begin(), q3.end());
                 auto sm4 = min_element(q4.begin(), q4.end());
+                auto sm5 = min_element(q5.begin(), q5.end());
+                auto sm6 = min_element(q6.begin(), q6.end());
+                auto sm7 = min_element(q7.begin(), q7.end());
+                auto sm8 = min_element(q8.begin(), q8.end());
+                auto sm9 = min_element(q9.begin(), q9.end());
+                auto sm10 = min_element(q10.begin(), q10.end());
+                auto sm11 = min_element(q11.begin(), q11.end());
+                auto sm12 = min_element(q12.begin(), q12.end());
                 min1 = *sm1;
                 min2 = *sm2;
                 min3 = *sm3;
                 min4 = *sm4;
+                min5 = *sm5;
+                min6 = *sm6;
+                min7 = *sm7;
+                min8 = *sm8;
+                min9 = *sm9;
+                min10 = *sm10;
+                min11 = *sm11;
+                min12 = *sm12;
                 angles << " left front: " << min1
+                << "// " << "left back: " << min2
+                << "// " << "right back: " << min3
+                << "// " << "right front: " << min4;
+                << "// " << "left back: " << min2
+                << "// " << "right back: " << min3
+                << "// " << "right front: " << min4;
                 << "// " << "left back: " << min2
                 << "// " << "right back: " << min3
                 << "// " << "right front: " << min4;
@@ -112,14 +175,9 @@ class Lidar_detection{
             }
             
         
-        double a = 0.25; //y side
-        double b = 0.5; //x side
-        
-        double ellipse(const double theata, );
-        double ans;
-        ans = std::sqrt((std::pow[a,2]*std::pow[b,2])/(std::pow[b,2]*std::pow[std::cos(theata),2]+std::pow[a,2]*std::pow[std::sin(theata),2]));
-        return ans;
-        
+ 
+        double ans = eclipse(
+
             //left front
             if(min1<ans){
                 cmd_vel.linear.x = -0.2;
