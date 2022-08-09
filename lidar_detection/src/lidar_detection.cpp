@@ -117,30 +117,30 @@ class Lidar_detection{
         
         double ellipse(const double theata, );
         double ans;
-        ans = std::sqrt((std::pow[a,2]*std::pow[b,2])/(std::pow[b,2]*pow[std::cos(theata),2]+std::pow[a,2]*pow[std::sin(theata),2]));
+        ans = std::sqrt((std::pow[a,2]*std::pow[b,2])/(std::pow[b,2]*std::pow[std::cos(theata),2]+std::pow[a,2]*std::pow[std::sin(theata),2]));
         return ans;
         
             //left front
-            if(min1<0.5){
+            if(min1<ans){
                 cmd_vel.linear.x = -0.2;
                 cmd_vel.linear.y = 0.0;
                 cmd_vel.angular.z = 0.0;
             }
             //left back
-            if(min2<0.5){
+            if(min2<ans){
                 cmd_vel.linear.x = 0.0;
                 cmd_vel.linear.y = 0.0;
                 cmd_vel.angular.z = 0.2;
 
             }
             //right back
-            if(min3<0.5){
+            if(min3<ans){
                 cmd_vel.linear.x = 0.0;
                 cmd_vel.linear.y = 0.0;
                 cmd_vel.angular.z = -0.2;
             }
             //right front
-            if(min4<0.5){
+            if(min4<ans){
                 cmd_vel.linear.x = -0.2;
                 cmd_vel.linear.y = 0.0;
                 cmd_vel.angular.z = 0.0;
