@@ -158,16 +158,18 @@ class Lidar_detection{
                 min10 = *sm10;
                 min11 = *sm11;
                 min12 = *sm12;
-                angles << " left front: " << min1
-                << "// " << "left back: " << min2
-                << "// " << "right back: " << min3
-                << "// " << "right front: " << min4;
-                << "// " << "left back: " << min2
-                << "// " << "right back: " << min3
-                << "// " << "right front: " << min4;
-                << "// " << "left back: " << min2
-                << "// " << "right back: " << min3
-                << "// " << "right front: " << min4;
+                angles << " left front 0-30: " << min1
+                << "// " << "left front 30-60: " << min2
+                << "// " << "left front 60-90: " << min3
+                << "// " << "left back 90-120: " << min4
+                << "// " << "left back 120-150: " << min5
+                << "// " << "left back 150-180: " << min6
+                << "// " << "right back -180--150: " << min7
+                << "// " << "right back -150--120: " << min8
+                << "// " << "right back -120--90: " << min9
+                << "// " << "right front -90--60: " << min10
+                << "// " << "right front -60--30: " << min11
+                << "// " << "right front -30-0: " << min12;
             }
             catch(const std::exception& e)
             {
