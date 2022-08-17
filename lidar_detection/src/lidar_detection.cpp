@@ -178,32 +178,77 @@ class Lidar_detection{
             
         
  
-        double ans = eclipse(
+        //double ans = eclipse(
 
-            //left front
+            //left front 0-30
             if(min1<ans){
-                cmd_vel.linear.x = -0.2;
-                cmd_vel.linear.y = 0.0;
-                cmd_vel.angular.z = 0.0;
-            }
-            //left back
-            if(min2<ans){
-                cmd_vel.linear.x = 0.0;
-                cmd_vel.linear.y = 0.0;
-                cmd_vel.angular.z = 0.2;
-
-            }
-            //right back
-            if(min3<ans){
                 cmd_vel.linear.x = 0.0;
                 cmd_vel.linear.y = 0.0;
                 cmd_vel.angular.z = -0.2;
             }
-            //right front
-            if(min4<ans){
-                cmd_vel.linear.x = -0.2;
+            //left front 30-60
+            if(min2<ans){
+                cmd_vel.linear.x = 0.0;
                 cmd_vel.linear.y = 0.0;
-                cmd_vel.angular.z = 0.0;
+                cmd_vel.angular.z = -0.15;
+            }
+            //left front 60-90
+            if(min3<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = -0.1;
+            }
+            //left back 90-120
+            if(min4<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = 0.1;
+            }
+            //left back 120-150
+            if(min5<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = 0.15;
+            }
+            //left back 150-180
+//            if(min6<ans){
+//                cmd_vel.linear.x = 0.0;
+//                cmd_vel.linear.y = 0.0;
+//                cmd_vel.angular.z = 0.2;
+//            }
+            //right back -180--150
+//            if(min7<ans){
+//                cmd_vel.linear.x = 0.0;
+//                cmd_vel.linear.y = 0.0;
+//                cmd_vel.angular.z = -0.2;
+//            }
+            //right back -150--120
+            if(min8<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = -0.15;
+            //right back -120--90
+            if(min9<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = -0.1;
+            //right front -90--60
+            if(min10<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = 0.1;
+            }
+            //right front -60--30
+            if(min11<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = 0.15;
+            }
+            //right front -30-0
+            if(min12<ans){
+                cmd_vel.linear.x = 0.0;
+                cmd_vel.linear.y = 0.0;
+                cmd_vel.angular.z = 0.1;
             }
 //             if(min1<0.5 && min1<0.5 &&  min1<0.5 &&  min1<0.5 &&){
 //                 cmd_vel.linear.x = 0.2;
